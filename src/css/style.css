@@ -1,0 +1,69 @@
+.banner {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.3),
+      rgba(255, 255, 255, 0.3)
+    ),
+    url("../images/banner.jpg");
+  background-position: center;
+  background-size: 100%;
+  height: 500px;
+  padding: 8rem 0;
+}
+.banner h1 {
+  font-size: 7rem;
+}
+
+.subheading h2 {
+  border-bottom: 2px solid black;
+  display: inline-block;
+}
+
+.saleproduct {
+  margin-top: 50px;
+}
+.products {
+  text-align: center;
+}
+.products .product_image img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+.ratings i {
+  color: goldenrod;
+}
+
+.fashionshop {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(59, 57, 57, 0.3),
+      rgba(59, 57, 57, 0.3)
+    ),
+    url("../images/fashion.jpg");
+  height: 300px;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+.fashionshop h1,
+.fashionshop p {
+  color: white;
+}
+.fashionshop p {
+  letter-spacing: 3px;
+}
+.gallery img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+@media (max-width: 575px) {
+  .products .product_image img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    object-position: top;
+  }
+}
