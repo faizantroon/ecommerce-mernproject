@@ -1,11 +1,13 @@
 import Banner from "../components/Banner";
 import Products from "../components/Products";
+import Login from "../Login";
 
 function Home() {
   return (
     <>
-      <Banner />
-      <Products />
+      <Login />
+      {/* <Banner />
+      <Products /> */}
     </>
   );
 }

@@ -4,11 +4,11 @@ import Alert from "./Alert";
 function Counter(props) {
   const { appname, incrementvalue, decrementvalue } = props;
   const [count, setCount] = useState(0);
-  const [alert, setAlert] = useState("");
+  const [alert, setAlert] = useState();
   const [alertShow, setAlertShow] = useState(false);
 
   function increment() {
-    setCount(count + incrementvalue);
+    setCount(count + 1);
   }
   function decrement() {
     setCount(count - decrementvalue);

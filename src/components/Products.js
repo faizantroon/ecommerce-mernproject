@@ -4,6 +4,31 @@ import ProductImage3 from "../images/prod3.png";
 import ProductCard from "./ProductCards";
 
 function Products() {
+  const product = [
+    {
+      producttitle: "Product1",
+      productprice: 100,
+      ProductImage2: ProductImage2,
+    },
+    {
+      producttitle: "Product2",
+      productprice: 200,
+      ProductImage2: ProductImage1,
+    },
+    {
+      producttitle: "Product3",
+      productprice: 400,
+      ProductImage2: ProductImage3,
+    },
+    {
+      producttitle: "Product4",
+      productprice: 1000,
+      ProductImage2: ProductImage1,
+    },
+  ];
+
+  // console.log(product);
+
   return (
     <section className="saleproduct">
       <div className="row">
@@ -14,26 +39,15 @@ function Products() {
         </div>
       </div>
       <div className="row">
-        <ProductCard
-          producttitle="Product 1"
-          productprice={100}
-          ProductImage2={ProductImage2}
-        />
-        <ProductCard
-          producttitle="Product 2"
-          productprice={200}
-          ProductImage2={ProductImage1}
-        />
-        <ProductCard
-          producttitle="Product 3"
-          productprice={300}
-          ProductImage2={ProductImage3}
-        />
-        <ProductCard
-          producttitle="Product 4"
-          productprice={400}
-          ProductImage2={ProductImage2}
-        />
+        {product.map((singleproduct) => {
+          return (
+            <ProductCard
+              producttitle={singleproduct.producttitle}
+              productprice={singleproduct.productprice}
+              ProductImage2={singleproduct.ProductImage2}
+            />
+          );
+        })}
       </div>
     </section>
   );
