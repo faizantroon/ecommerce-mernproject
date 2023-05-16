@@ -1,16 +1,31 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  function submitForm(event) {
+  async function submitForm(event) {
     event.preventDefault();
-    if (email === "" && password === "") {
+    if (email === "" || password === "") {
       setError("All fields are required");
     } else {
-      setError("");
+      try {
+        const resp = await axios.post("http://localhost:3001/users/login", {
+          username: email,
+          password: password,
+        });
+        if (resp?.status === 200) {
+          navigate("/dashboard");
+          setError("");
+        }
+      } catch (error) {
+        console.log(error);
+        setError(error.response.data.message);
+      }
     }
     console.log("email", email);
     console.log("password", password);
@@ -55,10 +70,11 @@ function Login() {
             <button
               onClick={(event) => submitForm(event)}
               type="submit"
-              className="btn btn-primary d-block w-100"
+              className="btn btn-primary d-block w-100 mb-1"
             >
               Submit
             </button>
+            <Link to="/signup">Dont have account. Signup</Link>
           </form>
         </div>
       </div>

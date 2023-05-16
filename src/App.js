@@ -1,17 +1,19 @@
 import "./App.css";
 import Counter from "./Counter";
 import Home from "./Home";
+import Login from "./Login";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Signup from "./Signup";
 
 function App() {
   return (
-    <>
-      <Home />
-      {/* <Counter
-        appname="My Counter App"
-        incrementvalue={10}
-        decrementvalue={5}
-      /> */}
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/dashboard" element={<Home />} />
+        <Route path="/signup" element={<Signup />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

@@ -5,9 +5,9 @@ import Login from "../Login";
 function Home() {
   return (
     <>
-      <Login />
-      {/* <Banner />
-      <Products /> */}
+      {/* <Login /> */}
+      <Banner />
+      <Products />
     </>
   );
 }
