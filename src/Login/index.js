@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -7,6 +7,14 @@ function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const userData = localStorage?.getItem("user");
+  const parsedData = JSON?.parse(userData);
+
+  useEffect(() => {
+    if (parsedData?._id) {
+      navigate("/dashboard");
+    }
+  }, []);
 
   async function submitForm(event) {
     event.preventDefault();
@@ -19,7 +27,9 @@ function Login() {
           password: password,
         });
         if (resp?.status === 200) {
-          navigate("/dashboard");
+          localStorage.setItem("user", JSON.stringify(resp?.data?.data));
+          // navigate("/dashboard");
+          window.location.reload();
           setError("");
         }
       } catch (error) {
