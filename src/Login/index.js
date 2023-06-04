@@ -47,7 +47,7 @@ function Login() {
           <form className="p-4 rounded-4">
             <h2 className="text-center">Login</h2>
             {error !== "" && (
-              <div class="alert alert-danger" role="alert">
+              <div className="alert alert-danger" role="alert">
                 {error}
               </div>
             )}
