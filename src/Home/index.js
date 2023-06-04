@@ -1,14 +1,14 @@
 import Banner from "../components/Banner";
 import Products from "../components/Products";
 import Login from "../Login";
+import { useSelector, useDispatch } from "react-redux";
+import { logoutStatic } from "../store/authSlice";
 
 function Home() {
-  const userData = localStorage?.getItem("user");
-  const parsedData = JSON?.parse(userData);
-
+  const { user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
   function logout() {
-    localStorage.removeItem("user");
-    window.location.reload();
+    dispatch(logoutStatic());
   }
   return (
     <>
@@ -20,7 +20,7 @@ function Home() {
           </button>
         </div>
         <div className="col-md-6 text-end">
-          <h4>Welcome {parsedData?.name}</h4>
+          <h4>Welcome {user?.name}</h4>
         </div>
       </div>
       <Banner />

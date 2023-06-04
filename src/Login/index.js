@@ -1,20 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../store/authSlice";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const userData = localStorage?.getItem("user");
-  const parsedData = JSON?.parse(userData);
+  const dispatch = useDispatch();
+  const { isLoggedIn } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    if (parsedData?._id) {
+    if (isLoggedIn) {
       navigate("/dashboard");
+    } else {
+      navigate("/");
     }
-  }, []);
+  }, [isLoggedIn]);
 
   async function submitForm(event) {
     event.preventDefault();
@@ -27,9 +31,8 @@ function Login() {
           password: password,
         });
         if (resp?.status === 200) {
-          localStorage.setItem("user", JSON.stringify(resp?.data?.data));
-          // navigate("/dashboard");
-          window.location.reload();
+          dispatch(login(resp?.data?.data));
+          navigate("/dashboard");
           setError("");
         }
       } catch (error) {

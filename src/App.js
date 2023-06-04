@@ -5,17 +5,17 @@ import Login from "./Login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Signup from "./Signup";
 import PrivateRoute from "./ProtectedRoute/PrivateRoutes";
+import { useSelector } from "react-redux";
 
 function App() {
-  const userData = localStorage?.getItem("user");
-  const parsedData = JSON?.parse(userData);
-  console.log(parsedData?._id);
+  const { isLoggedIn } = useSelector((state) => state.auth);
+
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
 
-        <Route element={<PrivateRoute id={parsedData?._id} />}>
+        <Route element={<PrivateRoute id={isLoggedIn} />}>
           <Route path="/dashboard" element={<Home />} />
         </Route>
 
